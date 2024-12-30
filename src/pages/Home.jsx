@@ -9,20 +9,26 @@ function Home() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const loadPopularMovies = async () => {
-      try {
-        const popularMovies = await getPopularMovies();
-        setMovies(popularMovies);
-      } catch (err) {
-        setError("Failed to load movies.....");
-      } finally {
-        setLoading(false);
-      }
-    };
+  const loadPopularMovies = async () => {
+    try {
+      const popularMovies = await getPopularMovies();
+      setMovies(popularMovies);
+    } catch (err) {
+      setError("Failed to load movies.....");
+    } finally {
+      setLoading(false);
+    }
+  };
 
+  useEffect(() => {
     loadPopularMovies();
   }, []);
+
+  const handleSearchClear = () => {
+    setSearchQuery("");
+
+    loadPopularMovies();
+  };
 
   const handleSearch = async (e) => {
     e.preventDefault();
@@ -54,6 +60,9 @@ function Home() {
         />
         <button type="submit" className="search-button">
           Search
+        </button>
+        <button className="search-button" onClick={handleSearchClear}>
+          Clear
         </button>
       </form>
 
