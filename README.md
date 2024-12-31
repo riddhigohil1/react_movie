@@ -1,0 +1,1 @@
+This project involves creating a web application that interacts with a movie database API to fetch and display information about movies. The application will be built using React and will make extensive use of React hooks, including useState, useEffect, and useContext, to manage state, side effects, and global state respectively.
